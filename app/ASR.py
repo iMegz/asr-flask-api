@@ -5,7 +5,7 @@
 from onnxruntime import InferenceSession
 from transformers import AutoProcessor
 import numpy as np
-from constants import DUMMY_FEED, PAST, EOS_TOKEN_ID, TIMEOUT
+from .constants import DUMMY_FEED, PAST, EOS_TOKEN_ID, TIMEOUT
 import time
 
 # Color text in terminal
@@ -95,8 +95,6 @@ class Whisper:
 
     # Extract features from the audio
     def extract_features(self, audio):
-        f = Whisper.feature_extractor(
-            audio, sampling_rate=16000).input_features
         return np.array(Whisper.feature_extractor(audio, sampling_rate=16000).input_features, dtype=np.float32)
 
     # Encode the input features

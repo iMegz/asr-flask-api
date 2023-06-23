@@ -6,8 +6,8 @@
 # import the necessary packages
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
-from ASR import Whisper
 import numpy as np
+from .ASR import Whisper
 # from eval import calculate_wer # For testing purposes
 
 app = Flask(__name__)
@@ -60,11 +60,6 @@ def handle_data(data):
     # Perform speech recognition using the loaded models and sessions
     isCheating, text, perf = model.process(audio_data, keywords)
 
-    # For testing purposes Only
-    # print(text, isCheating)
-    # wer = calculate_wer(keywords, text)
-    # perf["wer"] = wer
-
     if log_to_client:
         socketio.emit('log', {'text': text, 'perf': perf})
 
@@ -73,10 +68,11 @@ def handle_data(data):
         socketio.emit('isCheating', text)
 
 
-if __name__ == '__main__':
-    print('Server started')
-    from time import time as t
-    start = t()
-    Whisper.load_models(enocder_path, decoder_path, model_name)
-    print(f'Models loaded in {round(t() - start, 3)}s')
+from time import time as t
+start = t()
+Whisper.load_models(enocder_path, decoder_path, model_name)
+print(f'Models loaded in {round(t() - start, 3)}s')
+
+if __name__ == "__main__":
+    print('Server starting')
     socketio.run(app, port=5000)
