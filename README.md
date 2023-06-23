@@ -62,7 +62,7 @@ socket.emit('data', data);
 The server expects the following data types:
 
 * `audio_blob`: A `Float32Array` buffer containing the audio data in WAV format.
-* ` keywords`: An array of strings representing the keywords.
+* `keywords`: An array of strings representing the keywords.
 
 ### Running the Server
 
