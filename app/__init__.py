@@ -20,7 +20,7 @@ decoder_path = models_dir + "decoder.ort"
 
 model_name = "AhmedMEGZ/whisper-finetuned"
 
-log_to_client = False
+log_to_client = True
 
 
 @app.route('/')
@@ -72,7 +72,9 @@ from time import time as t
 start = t()
 Whisper.load_models(enocder_path, decoder_path, model_name)
 print(f'Models loaded in {round(t() - start, 3)}s')
+print('Server starting')
+
 
 if __name__ == "__main__":
     print('Server starting')
-    socketio.run(app, port=5000)
+    socketio.run(app, host="0.0.0.0")
