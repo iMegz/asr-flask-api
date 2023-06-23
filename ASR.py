@@ -5,7 +5,7 @@
 from onnxruntime import InferenceSession
 from transformers import AutoProcessor
 import numpy as np
-from .constants import DUMMY_FEED, PAST, EOS_TOKEN_ID, TIMEOUT
+from constants import DUMMY_FEED, PAST, EOS_TOKEN_ID, TIMEOUT
 import time
 
 # Color text in terminal

@@ -7,7 +7,7 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 import numpy as np
-from .ASR import Whisper
+from ASR import Whisper
 # from eval import calculate_wer # For testing purposes
 
 app = Flask(__name__)
@@ -68,13 +68,14 @@ def handle_data(data):
         socketio.emit('isCheating', text)
 
 
-from time import time as t
-start = t()
-Whisper.load_models(enocder_path, decoder_path, model_name)
-print(f'Models loaded in {round(t() - start, 3)}s')
-print('Server starting')
+
 
 
 if __name__ == "__main__":
+    print('Server starting')
+    from time import time as t
+    start = t()
+    Whisper.load_models(enocder_path, decoder_path, model_name)
+    print(f'Models loaded in {round(t() - start, 3)}s')
     print('Server starting')
     socketio.run(app, host="0.0.0.0")
