@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Server Documentation</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css"
+        />
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #2d3436;
+                color: #fff;
+            }
+
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            }
+
+            h1 {
+                margin-bottom: 10px;
+                color: #fff;
+            }
+
+            h2 {
+                margin-top: 20px;
+                margin-bottom: 10px;
+                color: #fff;
+            }
+
+            p {
+                margin-bottom: 20px;
+            }
+
+            pre {
+                background-color: #222;
+                color: #fff;
+                padding: 10px;
+                overflow-x: auto;
+            }
+
+            code {
+                font-family: Consolas, monospace;
+                font-size: 14px;
+                background-color: #222;
+                padding: 2px 5px;
+            }
+
+            ul {
+                margin-top: 5px;
+                margin-bottom: 10px;
+            }
+
+            li {
+                margin-bottom: 5px;
+            }
+
+            .highlight {
+                background-color: #f8c291;
+                padding: 2px 5px;
+            }
+
+            .styled-link {
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Server Documentation</h1>
+            <p>
+                Developed by
+                <a href="https://github.com/iMegz" class="styled-link"
+                    >A. Magdi Mostafa</a
+                >
+                and
+                <a href="https://github.com/AMF777" class="styled-link"
+                    >A. Magdy Fahmy</a
+                >
+            </p>
+
+            <h2>Introduction</h2>
+            <p>
+                This documentation provides information on how to interact with
+                the server using Python and React JS. The server utilizes a
+                fine-tuned
+                <a
+                    href="https://huggingface.co/AhmedMEGZ/whisper-finetuned/tree/main"
+                    class="styled-link"
+                    >Whisper-base.en</a
+                >
+                model.
+            </p>
+
+            <h2>Connecting to the Server</h2>
+            <p>
+                To connect to the server, you can use the following code
+                snippets in Python and React JS.
+            </p>
+
+            <h3>Python</h3>
+            <pre><code class="language-python">import socketio
+
+sio = socketio.Client()
+sio.connect('http://localhost:5000')
+
+@sio.on('connected')
+def on_connected(data):
+    print(data)
+
+@sio.on('isCheating')
+def on_cheating_detected(text):
+    print(f'Cheating detected: {text}')
+
+# Send data to the server
+data = {
+    'audio_blob': audio_blob,
+    'keywords': keywords
+}
+sio.emit('data', data)
+</code></pre>
+
+            <h3>React JS</h3>
+            <pre><code class="language-javascript">import io from 'socket.io-client';
+
+const socket = io('http://localhost:5000');
+
+socket.on('connected', (data) => {
+    console.log(data);
+});
+
+socket.on('isCheating', (text) => {
+    console.log('Cheating detected:', text);
+});
+
+// Send data to the server
+const data = {
+    audio_blob: audioBlob,
+    keywords: keywords
+};
+socket.emit('data', data);
+</code></pre>
+
+            <h2>Data Types</h2>
+            <ul>
+                <li>
+                    <code>audio_blob</code>: A <code>Float32Array</code> buffer
+                    containing the audio data in WAV format.
+                </li>
+                <li>
+                    <code>keywords</code>: An array of strings representing the
+                    keywords.
+                </li>
+            </ul>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    </body>
+</html>
