@@ -4,7 +4,7 @@ This documentation provides information on how to interact with the server using
 
 ## Introduction
 
-This server is developed by [A. Magdi Mostafa](https://github.com/iMegz) and [A. Magdy Fahmy](https://github.com/AMF777). It utilizes a fine-tuned [Whisper-base.en](https://huggingface.co/AhmedMEGZ/whisper-finetuned/tree/main) model for speech recognition.
+This server is developed by [A. Magdi Mostafa](https://github.com/iMegz) and [A. Magdy Fahmy](https://github.com/AMF777). It utilizes a [fine-tuned Whisper-base.en](https://huggingface.co/AhmedMEGZ/whisper-finetuned/tree/main) model for speech recognition.
 
 ## Connecting to the Server
 
