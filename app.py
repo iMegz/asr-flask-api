@@ -68,9 +68,6 @@ def handle_data(data):
         socketio.emit('isCheating', text)
 
 
-
-
-
 if __name__ == "__main__":
     print('Server starting')
     from time import time as t
@@ -78,4 +75,4 @@ if __name__ == "__main__":
     Whisper.load_models(enocder_path, decoder_path, model_name)
     print(f'Models loaded in {round(t() - start, 3)}s')
     print('Server starting')
-    socketio.run(app, host="0.0.0.0")
+    socketio.run(app)
